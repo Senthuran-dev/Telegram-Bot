@@ -1,5 +1,5 @@
 langchain
-python-dotenv
+langchain_core
 langchain_groq
-langchain_community
-python-telegram-bot
+python-dotenv
+python-telegram-bot==20.7
