@@ -60,6 +60,6 @@ heroku config:set GROQ_API_KEY=your_key
 
 ## Tech Stack
 
-- [python-telegram-bot](https://python-telegram-bot.org/) — Telegram Bot API wrapper
-- [LangChain](https://www.langchain.com/) — LLM orchestration
-- [Groq](https://groq.com/) — Fast LLM inference
+- [python-telegram-bot](https://python-telegram-bot.org/) - Telegram Bot API wrapper
+- [LangChain](https://www.langchain.com/) - LLM orchestration
+- [Groq](https://groq.com/) - Fast LLM inference

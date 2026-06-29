@@ -55,9 +55,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "👋 Hi! I'm a joke bot powered by AI.\n\n"
         "Here's how to use me:\n"
-        "• /joke <topic> — Get a joke on any topic\n"
-        "• /categories — See suggested topics\n"
-        "• /help — Show this message again\n\n"
+        "• /joke <topic> - Get a joke on any topic\n"
+        "• /categories - See suggested topics\n"
+        "• /help - Show this message again\n\n"
         "In DMs, just type a topic and I'll generate a joke!\n"
         "In groups, mention me like @JokeEngine_Bot python"
     )
@@ -66,8 +66,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "🤖 **How to get jokes:**\n\n"
-        "• /joke <topic> — Get a joke (e.g. /joke python)\n"
-        "• /categories — Browse topic suggestions\n"
+        "• /joke <topic> - Get a joke (e.g. /joke python)\n"
+        "• /categories - Browse topic suggestions\n"
         "• In DMs: just type any topic directly\n"
         "• In groups: mention me with @JokeEngine_Bot <topic>\n\n"
         "One joke every 10 seconds per user.",
