@@ -14,13 +14,13 @@ load_dotenv()
 # --- Environment setup ---
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY", "")
 os.environ["LANGCHAIN_PROJECT"] = os.getenv("LANGCHAIN_PROJECT", "")
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2", "false")
 groq_api_key = os.getenv("GROQ_API_KEY")
 if not groq_api_key:
     raise ValueError("GROQ_API_KEY environment variable is not set")
 
 # --- LLM setup (created once, reused for all requests) ---
-llm = ChatGroq(model="Gemma2-9b-It", groq_api_key=groq_api_key)
+llm = ChatGroq(model="openai/gpt-oss-20b", groq_api_key=groq_api_key)
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a Joking AI. Give me only ONE funny joke on the given topic."),
@@ -142,7 +142,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text("Please specify a topic after mentioning me!")
 
 
-def main():
+def get_bot():
     token = os.getenv("TELEGRAM_API_KEY")
     if not token:
         raise ValueError("TELEGRAM_API_KEY environment variable is not set")
@@ -153,6 +153,12 @@ def main():
     app.add_handler(CommandHandler("joke", joke_command))
     app.add_handler(CommandHandler("categories", categories_command))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    return app
+
+
+def main():
+    app = get_bot()
+    print("Starting bot in polling mode...")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 

@@ -1,6 +1,6 @@
 # JokeEngine Bot
 
-A Telegram bot that generates AI-powered jokes on any topic using Groq's Gemma2 model and LangChain.
+A Telegram bot that generates AI-powered jokes on any topic using OpenAI GPT-OSS 20B (via Groq) and LangChain.
 
 ## Features
 
@@ -45,18 +45,17 @@ A Telegram bot that generates AI-powered jokes on any topic using Groq's Gemma2 
    python app.py
    ```
 
-## Deployment (Heroku)
+## Deployment (Vercel Serverless Webhook)
 
-The included `Procfile` is configured for Heroku deployment:
-```
-worker: python app.py
-```
+This repository is configured to be deployed as a serverless function on Vercel.
 
-Set the environment variables in your Heroku dashboard or via CLI:
-```bash
-heroku config:set TELEGRAM_API_KEY=your_token
-heroku config:set GROQ_API_KEY=your_key
-```
+1. Create a new project on [Vercel](https://vercel.com/) and connect your GitHub repository.
+2. In the Vercel project settings, add the following Environment Variables:
+   - `TELEGRAM_API_KEY`
+   - `GROQ_API_KEY`
+3. Deploy the project.
+4. Once deployed, register your Vercel URL with Telegram by visiting this URL in your browser (replace with your actual token and Vercel URL):
+   `https://api.telegram.org/bot<YOUR_TELEGRAM_TOKEN>/setWebhook?url=https://<YOUR_VERCEL_APP>.vercel.app/api/webhook`
 
 ## Tech Stack
 
