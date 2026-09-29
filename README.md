@@ -1,15 +1,15 @@
-﻿# JokeEngine Bot
+# 🤖 JokeEngine Bot
 
 A Telegram bot that generates AI-powered jokes on any topic using OpenAI GPT-OSS 20B (via Groq) and LangChain.
 
-## Features & Data Flow
+## 🌟 Features & Data Flow
 
 Below is exactly how each feature works, mapping the flow from the Frontend (Telegram) to the Backend (Python) and Data Layer (Groq API / Memory).
 
-### 1. Joke Generation (/joke, DM, or @mention)
+### 1. Joke Generation (`/joke`, DM, or `@mention`)
 The core feature routes user topics through an in-memory rate limiter, sanitizes the input, and queries the Groq LLM to generate a joke.
 
-`mermaid
+```mermaid
 sequenceDiagram
     actor Frontend as Telegram User
     participant Backend as Python App (app.py)
@@ -32,12 +32,12 @@ sequenceDiagram
         
         Backend-->>Frontend: Reply with joke
     end
-`
+```
 
-### 2. Suggested Categories (/categories)
+### 2. Suggested Categories (`/categories`)
 Quickly retrieves a predefined list of joke topics from memory and sends them to the user.
 
-`mermaid
+```mermaid
 sequenceDiagram
     actor Frontend as Telegram User
     participant Backend as Python App (app.py)
@@ -48,12 +48,12 @@ sequenceDiagram
     Memory-->>Backend: Returns ["programming", "python", "AI", ...]
     Backend->>Backend: Format list as Markdown string
     Backend-->>Frontend: Reply with formatted categories
-`
+```
 
-### 3. Setup & Help (/start and /help)
+### 3. Setup & Help (`/start` and `/help`)
 Provides users with instructions on how to interact with the bot in DMs and groups.
 
-`mermaid
+```mermaid
 sequenceDiagram
     actor Frontend as Telegram User
     participant Backend as Python App (app.py)
@@ -61,7 +61,7 @@ sequenceDiagram
     Frontend->>Backend: Sends "/start" or "/help"
     Backend->>Backend: Construct Markdown instructions string
     Backend-->>Frontend: Reply with usage guide
-`
+```
 
 ---
 
@@ -74,30 +74,30 @@ sequenceDiagram
 ## 🚀 Setup & Running Locally
 
 1. **Clone the repository**
-   \\\ash
+   ```bash
    git clone https://github.com/Senthuran-dev/Telegram-Bot.git
    cd Telegram-Bot
-   \\\
+   ```
 
 2. **Install dependencies**
-   \\\ash
+   ```bash
    pip install -r requirements.txt
-   \\\
+   ```
 
 3. **Configure environment variables**
-   \\\ash
+   ```bash
    cp .env.example .env
-   \\\
-   Edit .env and fill in your API keys:
-   \\\env
+   ```
+   Edit `.env` and fill in your API keys:
+   ```env
    TELEGRAM_API_KEY=your_telegram_bot_token
    GROQ_API_KEY=your_groq_api_key
-   \\\
+   ```
 
 4. **Run the bot**
-   \\\ash
+   ```bash
    python app.py
-   \\\
+   ```
 
 ## 🌐 Deployment (Vercel Serverless Webhook)
 
@@ -105,11 +105,11 @@ This repository is configured to be deployed as a serverless function on Vercel.
 
 1. Create a new project on [Vercel](https://vercel.com/) and connect your GitHub repository.
 2. In the Vercel project settings, add the following Environment Variables:
-   - TELEGRAM_API_KEY
-   - GROQ_API_KEY
+   - `TELEGRAM_API_KEY`
+   - `GROQ_API_KEY`
 3. Deploy the project.
 4. Once deployed, register your Vercel URL with Telegram by visiting this URL in your browser:
-   https://api.telegram.org/bot<YOUR_TELEGRAM_TOKEN>/setWebhook?url=https://<YOUR_VERCEL_APP>.vercel.app/api/webhook
+   `https://api.telegram.org/bot<YOUR_TELEGRAM_TOKEN>/setWebhook?url=https://<YOUR_VERCEL_APP>.vercel.app/api/webhook`
 
 ## 💻 Tech Stack
 
